@@ -1,8 +1,2 @@
-[client]
-user=root
-password={{ mysql_new_root_pass.stdout }}
 
-- name: Create my.conf
-  template:
-    src: template/mysql/my.cnf.j2
-    dest: /root/.my.cnf
+name: Install nginx
