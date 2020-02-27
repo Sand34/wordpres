@@ -81,12 +81,12 @@
         name: nginx
         state: present
 
-    -name: Start nginx
-     service:
+    - name: Start nginx
+      service:
         name: nginx
         state: started
 
-    -name: Create nginx Config
-     template:
-       scr: templates/nginx/default.j2
-       dest: /etc/nginx/sites-available/default
+    - name: Create nginx Config
+      template:
+        scr: templates/nginx/default.j2
+        dest: /etc/nginx/sites-available/default
