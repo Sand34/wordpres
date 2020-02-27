@@ -8,6 +8,6 @@
       ping:
 
 #PHP
-- name: Add the ondrej PHP PPA
-  apt-repository:
-    repo: 'ppa:ondrej/php'
+    - name: Add the ondrej PHP PPA
+      apt-repository:
+        repo: 'ppa:ondrej/php'
