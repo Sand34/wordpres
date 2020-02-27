@@ -5,10 +5,12 @@
   tasks:
     - name: ping_machine_cible
       ping:
+
 # PHP
     - name: Add the ondrej PHP PPA
       apt_repository:
         repo: 'ppa:ondrej/php'
+
     - name: Install PHP
       package:
         name: "{{ item }}"
@@ -18,10 +20,12 @@
         - php-fpm
         - php-mysql
         - php-xml
+
     - name: Remove apache2
       package:
         name: apache2
         state: absent
+
 # MySQL
     - name: Install MySQL
       package:
@@ -30,6 +34,7 @@
       loop:
         - mysql-server
         - python-mysqldb
+
     - name: Generate new root password
       command: openssl rand -hex 7
       args:
@@ -46,6 +51,7 @@
     - name: Output new root password
       debug:
         msg: "New root password is {{mysql_new_root_pass}}"
+
     - name: Update root password
       mysql_user:
         name: root
@@ -56,11 +62,8 @@
         - 127.0.0.1
         - ::1
         - localhost
+
     - name: Create my.cnf
       template:
         src: my.cnf.j2
         dest: /root/.my.cnf
-    - name: Create mysqld.cnf
-      template:
-        src: mysqld.cnf.j2
-        dest: /etc/mysql/mysql.conf.d/mysqld.cnf
