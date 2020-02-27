@@ -1,3 +1,7 @@
+upstream php {
+        server unix:/run/php/php7.4.3-fpm.sock;
+        }
+
 server {
         server_name book.example.com;
         root /var/www/book.example.com;
