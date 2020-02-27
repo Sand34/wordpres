@@ -93,7 +93,6 @@
          fpm_sock: /run/php/php7.{{ php_version.stdout.split(" ")[1].split(".")[1] }}-fpm.sock
       when: ansible_distribution == 'Ubuntu'
 
-
     - name: Create nginx Config
       template:
         scr: templates/nginx/default.j2
