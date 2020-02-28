@@ -141,7 +141,7 @@
 
     - name: Create wp-config
       template:
-        src: templates/wordpress/wp-config.php.jinja
+        src: templates/wordpress/wp-config.php.j2
         dest: /var/www/book.example.com/wp-config.php
 
     - name: Does the database exist?
