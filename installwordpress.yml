@@ -4,27 +4,20 @@
   become: yes
   tasks:
     - name: ping_machine_cible
-      ping:
+
+# TOOLS
+    - name: Install required tools
+      apt:
+        name:
+          - unzip
+        state: present        
 
 # PHP
     - name: Add the ondrej PHP PPA
-      apt_repository:
-        repo: 'ppa:ondrej/php'
 
     - name: Install PHP
-      package:
-        name: "{{ item }}"
-        state: present
-      loop:
-        - php
-        - php-fpm
-        - php-mysql
-        - php-xml
 
     - name: Remove apache2
-      package:
-        name: apache2
-        state: absent
 
 # MySQL
     - name: Install MySQL
@@ -104,6 +97,21 @@
         src: templates/nginx/default.j2
         dest: /etc/nginx/sites-available/default
       notify: restart nginx
+
+# WordPress
+    - name: Unzip WordPress
+      unarchive:
+        src: files/wordpress.zip
+        dest: /tmp
+        creates: /tmp/wordpress/wp-settings.php
+    - name: Create project folder
+      file:
+        dest: /var/www/book.example.com
+        state: directory
+    - name: Copy WordPress files
+      command: cp -a /tmp/wordpress/. /var/www/book.example.com
+      args:
+        creates: /var/www/book.example.com/wp-settings.php
 
   handlers:
     - name: restart nginx
