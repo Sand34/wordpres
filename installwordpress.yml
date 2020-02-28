@@ -39,7 +39,7 @@
       template:
         src: templates/mysql/mysqld.cnf.j2
         dest: /etc/mysql/mysql.conf.d/mysqld.cnf
-      notify: restart mysql
+        notify: restart mysql
 
     - name: Generate new root password
       command: openssl rand -hex 7
@@ -109,4 +109,9 @@
     - name: restart nginx
       service:
         name: nginx
+        state: restarted
+
+    - name: restart mysql
+      service:
+        name: mysql
         state: restarted
