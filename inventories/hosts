@@ -1,4 +1,0 @@
-sand_serv ansible_host=10.5.169.238 ansible_user=root
-
-[wordpress]
-sand_serv
