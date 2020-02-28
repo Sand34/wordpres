@@ -4,6 +4,7 @@
   become: yes
   tasks:
     - name: ping_machine_cible
+      ping:
 
 # TOOLS
     - name: Install required tools
@@ -117,7 +118,7 @@
       mysql_db:
         name: wordpress
         state: present
-        
+
     - name: Create WordPress MySQL user
       mysql_user:
         name: wordpress
