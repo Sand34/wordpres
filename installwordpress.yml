@@ -95,9 +95,9 @@
 
     - name: Create nginx Config
       template:
-        scr: templates/nginx/default.j2
+        src: templates/nginx/default.j2
         dest: /etc/nginx/sites-available/default
-      #notify: restart nginx
+      notify: restart nginx
 
   handlers:
     - name: restart nginx
